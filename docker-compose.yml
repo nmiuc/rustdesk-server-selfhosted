@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  hbbs:
+    image: rustdesk/rustdesk-server:latest
+    command: hbbs -r \${PUBLIC_IP}:21117 -k \${KEY}
+    ports: [21115-21118, 21116/udp]
+    volumes: [./data:/root]
+    restart: always
+  hbbr:
+    image: rustdesk/rustdesk-server:latest
+    command: hbbr
+    ports: [21117, 21119]
+    volumes: [./data:/root]
+    restart: always
+volumes: { data: {} }
